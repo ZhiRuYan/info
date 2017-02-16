@@ -4,19 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var glob = require('glob');  //通配符文件列表模块
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var cors = require('cors');
 
-var app = express();
+var cors = require('cors');   //解决跨域问题
+
+var app = module.exports = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -25,12 +25,18 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//----解决跨域问题-------
+//------解决跨域问题-------
 app.use(cors());
-//----------------------
+//------------------------
 
-app.use('/', index);
-app.use('/users', users);
+
+//------加载所有router-----
+var routers = glob.sync(__dirname + '/routes/**/*.js');
+routers.forEach(function (route) {
+  app.use(require(route));
+});
+//------------------------
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

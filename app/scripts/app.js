@@ -8,16 +8,22 @@
  *
  * Main module of the application.
  */
-    angular
-      .module('infoApp', [
-        'ngAnimate',
-        'ngCookies',
-        'ngResource',
-        'ngRoute',
-        'ngSanitize',
-        'ngTouch'
-      ])
-      .config(['$routeProvider', function($routeProvider) {
+angular
+  .module('infoApp', [
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch'
+  ])
+  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
+    //启用html5路由模式
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
 
     $routeProvider
       .when('/', {
@@ -29,6 +35,11 @@
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       })
       .otherwise({
         redirectTo: '/'
