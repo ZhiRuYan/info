@@ -12,7 +12,7 @@ angular.module('infoApp')
 		// AngularJS will instantiate a singleton by calling "new" on this function
 
 		var buildUrl = function(relativePath) {
-			return config.apiRoot + relativePath;
+			return config.apiRoot + 'api/' + relativePath;
 		};
 
 		this.testApi = function(){

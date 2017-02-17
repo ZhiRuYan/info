@@ -23,12 +23,12 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 //------解决跨域问题-------
 app.use(cors());
 //------------------------
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 //------加载所有router-----
 var routers = glob.sync(__dirname + '/routes/**/*.js');
@@ -36,7 +36,6 @@ routers.forEach(function (route) {
   app.use(require(route));
 });
 //------------------------
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

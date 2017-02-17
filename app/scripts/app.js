@@ -20,10 +20,7 @@ angular
   .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     //启用html5路由模式
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false
-    });
+    $locationProvider.html5Mode(true);
 
     $routeProvider
       .when('/', {
@@ -31,12 +28,12 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
+      .when('/about.html', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/login', {
+      .when('/login.html', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
