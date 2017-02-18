@@ -30,13 +30,18 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 //------加载所有router-----
 var routers = glob.sync(__dirname + '/routes/**/*.js');
 routers.forEach(function (route) {
   app.use(require(route));
 });
 //------------------------
-
+app.get('*.html', function (req, res) {
+  console.log('----------------------')
+  console.log('----------------------')
+  res.sendfile('../public/index.html');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
