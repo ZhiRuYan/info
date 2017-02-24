@@ -1,1 +1,23 @@
 <p>This is the login view.</p>
+
+<form action="" name="loginForm" class="loginForm">
+  <p>用户名:<br>
+    <input type="text" name="user" ng-model="user" required>
+    <span style="color:red" ng-show="loginForm.user.$dirty && loginForm.user.$invalid">
+      <span ng-show="loginForm.user.$error.required">用户名是必须的。</span>
+    </span>
+  </p>
+
+  <p>邮箱:<br>
+    <input type="email" name="email" ng-model="email" required>
+    <span style="color:red" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+      <span ng-show="loginForm.email.$error.required">邮箱是必须的。</span>
+      <span ng-show="loginForm.email.$error.email">非法的邮箱地址。</span>
+    </span>
+  </p>
+
+  <p>
+    <input type="submit"
+           ng-disabled="loginForm.user.$dirty && loginForm.user.$invalid ||loginForm.email.$dirty && loginForm.email.$invalid">
+  </p>
+</form>

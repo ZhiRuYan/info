@@ -8,7 +8,7 @@
 // 'test/spec/**/*.js'
 
 module.exports = function(grunt) {
-
+  var fs = require('fs');
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -89,7 +89,19 @@ module.exports = function(grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
+              connect().use(function (req, res) {
+                fs.readFile('./app/index.html', function (err, data) {
+                  if (err) {
+                    throw err;
+                  }
+                  else {
+                    res.write(data);
+                    res.end();
+                  }
+                });
+              }),
+
             ];
           }
         }
@@ -503,7 +515,7 @@ module.exports = function(grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
+    // 'cdnify',
     'cssmin',
     'uglify',
     'filerev',
