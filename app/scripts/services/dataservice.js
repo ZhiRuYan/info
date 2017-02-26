@@ -18,4 +18,14 @@ angular.module('infoApp')
 		this.testApi = function(){
 		  return $http.post(buildUrl('main'));
     };
+
+		//注册新用户
+    this.register = function(input){
+      return $http.post(buildUrl('register'),input);
+    };
+
+    //登录验证、
+    this.tryLogin = function(input){
+      return $http.post(buildUrl('tryLogin'),input)
+    }
 	}]);

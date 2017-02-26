@@ -1,23 +1,16 @@
-<p>This is the login view.</p>
+<section class="login-section">
+  <form name="loginForm" class="loginForm" novalidate>
 
-<form action="" name="loginForm" class="loginForm">
-  <p>用户名:<br>
-    <input type="text" name="user" ng-model="user" required>
-    <span style="color:red" ng-show="loginForm.user.$dirty && loginForm.user.$invalid">
-      <span ng-show="loginForm.user.$error.required">用户名是必须的。</span>
-    </span>
-  </p>
+    <div class="form-group">
+      <label for="user">用户名</label>
+      <input type="text" name="user" id="user" class="form-control" ng-model="loginInfo.user" placeholder="请输入您的用户名" required>
+    </div>
+    <div class="form-group">
+      <label for="password">密码</label>
+      <input type="password" name="password" id="password" class="form-control"  ng-model="loginInfo.password" placeholder="请输入您的密码"  required>
+    </div>
+    <button type="submit" class="btn btn-primary"  ng-click="tryLogin()">{{loginState}}</button>
+    <span ng-show="passCheck" class="help-block loginForm-warning">用户名或密码错误！</span>
+  </form>
+</section>
 
-  <p>邮箱:<br>
-    <input type="email" name="email" ng-model="email" required>
-    <span style="color:red" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
-      <span ng-show="loginForm.email.$error.required">邮箱是必须的。</span>
-      <span ng-show="loginForm.email.$error.email">非法的邮箱地址。</span>
-    </span>
-  </p>
-
-  <p>
-    <input type="submit"
-           ng-disabled="loginForm.user.$dirty && loginForm.user.$invalid ||loginForm.email.$dirty && loginForm.email.$invalid">
-  </p>
-</form>

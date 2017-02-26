@@ -41,5 +41,8 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "form-validator": "0.0.11"
   }
 }
