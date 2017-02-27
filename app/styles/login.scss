@@ -1,14 +1,22 @@
+
+.login-section{
+  position: absolute;
+  top:0;
+  bottom:0;
+  left: 0;
+  right:0;
+  background: #3B3E40;
+}
 .loginForm{
   width:300px;
   margin:200px auto;
-  //text-align: center;
 }
-//.login-section{
-//  display: block;
-//  height:500px;
-//  width:100%;
-//  background: url("../images/bg-1.jpg") no-repeat;
-//}
 .loginForm-warning{
   color:red;
+}
+.form-group label{
+  color: #fff;
+}
+.loginForm-button{
+  width:50px;
 }
