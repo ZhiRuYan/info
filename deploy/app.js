@@ -31,6 +31,11 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//预加载所有Model
+var models = glob.sync(__dirname + '/models/**/*.js');
+models.forEach(function (model) {
+  require(model);
+});
 //------加载所有router-----
 var routers = glob.sync(__dirname + '/routes/**/*.js');
 routers.forEach(function (route) {

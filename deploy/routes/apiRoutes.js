@@ -13,4 +13,19 @@ router.post('/api/main', function(req, res, next) {
   });
 });
 
+//注册新用户
+router.post('/api/register', function(req, res, next) {
+  service.register(req.body).then(function(data){
+    res.json(data)
+  });
+});
+
+//登录验证
+router.post('/api/tryLogin', function(req, res, next) {
+  service.tryLogin(req.body).then(function(data){
+    res.json(data)
+  });
+});
+
+
 module.exports = router;

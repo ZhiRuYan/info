@@ -1,13 +1,63 @@
 /**
  * Created by ZhiRu on 2/16/2017.
  */
+
+
+//依赖工具
 var Promise = require('bluebird');
+var _ = require('underscore');
+
+
+//mongo model
+var UserModel = require('../models/users');
+
+
+
+
+
+//api接口
 var testApi = function () {
   return new Promise(function (resolve, reject) {
     resolve({testData:'测试数据，位于apiservice'});
   });
-}
+};
+
+
+
+
+//注册新用户
+var register = function (input) {
+  return new Promise(function (resolve, reject) {
+    var userList = new UserModel({
+      name:input.username,
+      email:input.email,
+      password:input.pass
+    });
+    userList.save(function(err){
+      if (err) {
+        reject({errcode: 0001, message: '系统错误(添加新用户)'});
+      }
+      else{
+        resolve({});
+      }
+    })
+  });
+};
+
+//登录验证
+var tryLogin = function (input) {
+  return new Promise(function (resolve, reject) {
+    var user = input.user;
+    var pass = input.password;
+    console.log(user);
+    console.log(pass);
+  });
+};
+
+
 //导出服务函数
   module.exports = exports = {
-    testApi: testApi
+    testApi: testApi,
+    register:register,
+    tryLogin:tryLogin
   }
