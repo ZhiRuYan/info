@@ -43,6 +43,7 @@
     "test": "karma start test\\karma.conf.js"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "form-validator": "0.0.11"
   }
 }

@@ -10,39 +10,42 @@ var _ = require('underscore');
 
 //mongo model
 var UserModel = require('../models/users');
-
-
-
-
-
 //api接口
 var testApi = function () {
   return new Promise(function (resolve, reject) {
-    resolve({testData:'测试数据，位于apiservice'});
+    resolve({testData: '测试数据，位于apiservice'});
   });
 };
-
-
 
 
 //注册新用户
 var register = function (input) {
   return new Promise(function (resolve, reject) {
     var userList = new UserModel({
-      name:input.username,
-      email:input.email,
-      password:input.pass
+      name: input.username,
+      email: input.email,
+      password: input.pass
     });
-    userList.save(function(err){
-      if (err) {
-        reject({errcode: 0001, message: '系统错误(添加新用户)'});
+    UserModel.find({name: input.username}, function (err, docs) {
+      if(docs==''){
+        userList.save(function (err) {
+          if (err) {
+            return reject({errcode: 0001, message: '系统错误(添加新用户)'});
+          }
+          else {
+            return resolve({});
+          }
+        }).catch(function (err) {
+          return reject(err)
+        });
+      }else{
+        return reject({message: '用户已存在'});
       }
-      else{
-        resolve({});
-      }
-    })
-  });
+    });
+
+  })
 };
+
 
 //登录验证
 var tryLogin = function (input) {
@@ -56,8 +59,8 @@ var tryLogin = function (input) {
 
 
 //导出服务函数
-  module.exports = exports = {
-    testApi: testApi,
-    register:register,
-    tryLogin:tryLogin
-  }
+module.exports = exports = {
+  testApi: testApi,
+  register: register,
+  tryLogin: tryLogin
+}
