@@ -30,16 +30,16 @@ var register = function (input) {
       if(docs==''){
         userList.save(function (err) {
           if (err) {
-            return reject({errcode: 0001, message: '系统错误(添加新用户)'});
+            return reject(err);
           }
           else {
-            return resolve({});
+            return resolve({result:'操作成功'});
           }
         }).catch(function (err) {
           return reject(err)
         });
       }else{
-        return reject({message: '用户已存在'});
+        return reject({result: '用户已存在'});
       }
     });
 

@@ -1,5 +1,5 @@
-<section class="register-section">
-  <div class="sign-up">
+<section class="register-section  ">
+  <div class="sign-up animated zoomInUp">
     <form name="signUp" novalidate>
       <div class="form-group" ng-class="{ 'has-error' : signUp.username.$invalid && !signUp.username.$pristine }">
         <label for="username">用户名</label>
@@ -30,8 +30,7 @@
       </div>
 
 
-      <button type="submit" class="btn btn-primary" ng-disabled="signUp.$invalid" ng-click="addUser()">提交</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="signUp.$invalid||(user.pass!=user.passRepeat)" ng-click="addUser()">提交</button>
     </form>
   </div>
-
 </section>
