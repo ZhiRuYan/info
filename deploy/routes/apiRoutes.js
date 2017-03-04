@@ -26,6 +26,8 @@ router.post('/api/register', function(req, res, next) {
 router.post('/api/tryLogin', function(req, res, next) {
   service.tryLogin(req.body).then(function(data){
     res.json(data)
+  }).catch(function(err){
+    res.json(err);
   });
 });
 

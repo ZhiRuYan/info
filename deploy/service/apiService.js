@@ -42,7 +42,6 @@ var register = function (input) {
         return reject({result: '用户已存在'});
       }
     });
-
   })
 };
 
@@ -52,8 +51,17 @@ var tryLogin = function (input) {
   return new Promise(function (resolve, reject) {
     var user = input.user;
     var pass = input.password;
-    console.log(user);
-    console.log(pass);
+    UserModel.find({name: user}, function (err, docs) {
+      if(docs!=''){
+        if(pass==docs[0].password){
+          resolve({result:'登录成功'});
+        }else{
+          reject({result:'密码错误'})
+        }
+      }else{
+        return reject({result: '用户不存在'});
+      }
+    });
   });
 };
 

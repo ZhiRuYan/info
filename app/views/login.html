@@ -9,8 +9,9 @@
       <label for="password">密码</label>
       <input type="password" name="password" id="password" class="form-control"  ng-model="loginInfo.password" placeholder="请输入您的密码"  required>
     </div>
-    <button type="submit" class="btn btn-primary loginForm-button"  ng-click="tryLogin()">{{loginState}}</button>
-    <span ng-show="passCheck" class="help-block loginForm-warning">用户名或密码错误！</span>
+    <button type="submit" class="btn btn-primary loginForm-button"  ng-click="tryLogin()" ng-disabled="loginForm.$invalid">{{loginState}}</button>
+    <button class="btn btn-success signIn-button"  ng-click="toRegister()">注册</button>
+    <span ng-show="passCheck" class="help-block loginForm-warning">{{wrongInfo}}</span>
   </form>
 </section>
 

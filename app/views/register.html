@@ -30,7 +30,8 @@
       </div>
 
 
-      <button type="submit" class="btn btn-primary" ng-disabled="signUp.$invalid||(user.pass!=user.passRepeat)" ng-click="addUser()">提交</button>
+      <button type="submit" class="btn btn-primary signUp-submit" ng-disabled="signUp.$invalid||(user.pass!=user.passRepeat)" ng-click="addUser()">注册</button>
+      <button class="btn btn-success signUp-login"  ng-click="toLogin()">登录</button>
     </form>
   </div>
 </section>
