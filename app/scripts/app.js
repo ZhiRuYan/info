@@ -43,6 +43,11 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/layout.html', {
+        templateUrl: 'views/layout.html',
+        controller: 'LayoutCtrl',
+        controllerAs: 'layout'
+      })
       .otherwise({
         redirectTo: '/'
       });

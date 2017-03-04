@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var glob = require('glob');  //通配符文件列表模块
+var session = require('express-session');
 
 
 var cors = require('cors');   //解决跨域问题
@@ -22,7 +23,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cookieParser());
+//启用session
+app.use(cookieParser('Mysecret'));
+app.use(session({
+  secret: 'Mysecret',//服务器端生成session的签名，相当于一个密钥
+  resave: true, //是否允许session重新设置
+  saveUninitialized: true   //是否设置session在存储容器中可以给修改
+}));
+
 
 //------解决跨域问题-------
 app.use(cors());
@@ -38,6 +46,7 @@ models.forEach(function (model) {
 });
 //------加载所有router-----
 var routers = glob.sync(__dirname + '/routes/**/*.js');
+
 routers.forEach(function (route) {
   app.use(require(route));
 });
@@ -47,6 +56,7 @@ routers.forEach(function (route) {
 app.get('*.html', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');

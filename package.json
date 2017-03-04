@@ -7,6 +7,7 @@
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-concurrent": "^1.0.0",
+    "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compass": "^1.0.0",
     "grunt-contrib-concat": "^0.5.0",
@@ -46,6 +47,7 @@
     "angular-animate": "^1.6.2",
     "angular-toastr": "^2.1.1",
     "animate.css": "^3.5.2",
-    "form-validator": "0.0.11"
+    "form-validator": "0.0.11",
+    "grunt-contrib-livereload": "^0.1.2"
   }
 }

@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var service = require('../service/apiService');
+// var middleware = require('../service/middleware');
 
 router.post('/api/main', function(req, res, next) {
   // res.json({data:'测试数据'});
@@ -30,6 +31,8 @@ router.post('/api/tryLogin', function(req, res, next) {
     res.json(err);
   });
 });
+
+
 
 
 module.exports = router;
