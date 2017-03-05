@@ -25,9 +25,10 @@ module.exports = function(grunt) {
     dist: './deploy/public'
   };
 
+  //跨域所需
+  grunt.loadNpmTasks('grunt-connect-proxy');
   // Define the configuration for all the tasks
   grunt.initConfig({
-
     // Project settings
     yeoman: appConfig,
 
@@ -75,34 +76,61 @@ module.exports = function(grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: 'api',
+          host: 'localhost', // 这是你希望转发到的远端服务器
+          port: 3000, // 远端服务器端口
+          changeOrigin: true, //
+        }
+      ],
       livereload: {
         options: {
           open: true,
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app),
-              connect().use(function (req, res) {
-                fs.readFile('./app/index.html', function (err, data) {
-                  if (err) {
-                    throw err;
-                  }
-                  else {
-                    res.write(data);
-                    res.end();
-                  }
-                });
-              }),
+          // middleware: function(connect) {
+          //   return [
+          //     connect.static('.tmp'),
+          //     connect().use(
+          //       '/bower_components',
+          //       connect.static('./bower_components')
+          //     ),
+          //     connect().use(
+          //       '/app/styles',
+          //       connect.static('./app/styles')
+          //     ),
+          //     connect.static(appConfig.app),
+          //     connect().use(function (req, res) {
+          //       fs.readFile('./app/index.html', function (err, data) {
+          //         if (err) {
+          //           throw err;
+          //         }
+          //         else {
+          //           res.write(data);
+          //           res.end();
+          //         }
+          //       });
+          //     }),
+          //
+          //   ];
+          // },
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
 
-            ];
+            // 设置代理
+            var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
+
+            // 代理每个base目录中的静态文件
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+
+            // 让目录可被浏览（即：允许枚举文件）
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
           }
         }
       },
@@ -486,6 +514,7 @@ module.exports = function(grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'configureProxies:server',//跨域
       'connect:livereload',
       'watch'
     ]);

@@ -18,17 +18,20 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 //启用session
-app.use(cookieParser('Mysecret'));
+app.use(cookieParser());
 app.use(session({
   secret: 'Mysecret',//服务器端生成session的签名，相当于一个密钥
-  resave: true, //是否允许session重新设置
-  saveUninitialized: true   //是否设置session在存储容器中可以给修改
+  resave: false, //是否允许session重新设置
+  saveUninitialized: false,   //是否设置session在存储容器中可以给修改
+  cookie:{maxAge:1000*60*60}
 }));
 
 
@@ -36,7 +39,6 @@ app.use(session({
 app.use(cors());
 //------------------------
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 //预加载所有Model
@@ -54,6 +56,7 @@ routers.forEach(function (route) {
 //将所有路由转发到index.html
 
 app.get('*.html', function (req, res) {
+  console.log(req.sessionID)
   res.sendFile(__dirname + '/public/index.html');
 });
 

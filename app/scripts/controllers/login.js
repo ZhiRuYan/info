@@ -25,8 +25,9 @@ angular.module('infoApp')
       dataservice.tryLogin($scope.loginInfo).then(function (res) {
         $scope.wrongInfo = res.data.result;
         if(res.data.result == '登录成功'){
-          alert('登录成功');
-          $location.path('layout.html');
+          // alert('登录成功');
+          console.log(res);
+          // $location.path('layout.html');
         }else{
           $scope.passCheck = true;
           $(".loginForm").addClass('shake');
