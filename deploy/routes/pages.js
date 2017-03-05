@@ -7,8 +7,11 @@ var session = require('express-session');
 
 
 router.get('/layout.html', function(req, res, next) {
+  console.log('==================================')
+  console.log('后端layout路由')
   console.log(req.sessionID)
   console.log(req.session)
+  console.log('==================================')
   next();
 });
 

@@ -26,19 +26,18 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 //启用session
-app.use(cookieParser());
+app.use(cookieParser('Mysecret'));
 app.use(session({
   secret: 'Mysecret',//服务器端生成session的签名，相当于一个密钥
   resave: false, //是否允许session重新设置
   saveUninitialized: false,   //是否设置session在存储容器中可以给修改
-  cookie:{maxAge:1000*60*60}
+  cookie: {maxAge: 1000 * 60 * 60, secure: false}
 }));
 
 
 //------解决跨域问题-------
 app.use(cors());
 //------------------------
-
 
 
 //预加载所有Model
@@ -56,7 +55,11 @@ routers.forEach(function (route) {
 //将所有路由转发到index.html
 
 app.get('*.html', function (req, res) {
+  console.log('==================================')
+  console.log('app转发路由')
   console.log(req.sessionID)
+  console.log(req.session)
+  console.log('==================================')
   res.sendFile(__dirname + '/public/index.html');
 });
 

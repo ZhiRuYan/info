@@ -27,7 +27,7 @@ angular.module('infoApp')
         if(res.data.result == '登录成功'){
           // alert('登录成功');
           console.log(res);
-          // $location.path('layout.html');
+          $location.path('layout.html');
         }else{
           $scope.passCheck = true;
           $(".loginForm").addClass('shake');

@@ -31,8 +31,6 @@ router.post('/api/tryLogin', function (req, res, next) {
       user: req.body.user,
       password: req.body.password
     };
-    console.log(req.sessionID)
-    console.log(req.session)
     res.json(data);
   }).catch(function (err) {
     res.json(err);
