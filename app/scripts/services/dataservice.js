@@ -26,6 +26,6 @@ angular.module('infoApp')
 
     //登录验证、
     this.tryLogin = function(input){
-      return $http.post(buildUrl('tryLogin'),input)
+      return $http.post(buildUrl('tryLogin'),input);
     }
 	}]);

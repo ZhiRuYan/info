@@ -5,10 +5,16 @@ var express = require('express');
 var router = express.Router();
 var service = require('../service/apiService');
 var session = require('express-session');
-// var middleware = require('../service/middleware');
+var bodyParser = require('body-parser');
+var app = module.exports = express();
 
-router.post('/api/main', function (req, res, next) {
+// var middleware = require('../service/middleware');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.post('/api/main', function (req, res, next) {
   // res.json({data:'测试数据'});
+  console.log('api=main'+ req.sessionID)
   service.testApi().then(function (data) {
     console.log(data)
     res.json(data);
@@ -16,7 +22,7 @@ router.post('/api/main', function (req, res, next) {
 });
 
 //注册新用户
-router.post('/api/register', function (req, res, next) {
+app.post('/api/register', function (req, res, next) {
   service.register(req.body).then(function (data) {
     res.json(data);
   }).catch(function (err) {
@@ -25,12 +31,18 @@ router.post('/api/register', function (req, res, next) {
 });
 
 //登录验证
-router.post('/api/tryLogin', function (req, res, next) {
+app.post('/api/tryLogin', function (req, res, next) {
+  // req.session = null;
+  console.log('```````````````````````'+req.sessionID)
+
   service.tryLogin(req.body).then(function (data) {
-    req.session.user = {
+    console.log('```````````````````````'+req.sessionID)
+    var user = {
       user: req.body.user,
       password: req.body.password
     };
+    req.session.user = user;
+    req.session.save();
     res.json(data);
   }).catch(function (err) {
     res.json(err);
@@ -38,4 +50,4 @@ router.post('/api/tryLogin', function (req, res, next) {
 });
 
 
-module.exports = router;
+// module.exports = router;

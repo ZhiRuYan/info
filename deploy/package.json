@@ -8,6 +8,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "~1.16.0",
+    "connect-redis": "^3.2.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.1",
     "debug": "~2.6.0",
@@ -18,7 +19,8 @@
     "mongodb": "^2.2.24",
     "mongoose": "^4.8.5",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2",
+    "redis": "^2.6.5",
+    "serve-favicon": "^2.3.2",
     "underscore": "^1.8.3"
   }
 }

@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var glob = require('glob');  //通配符文件列表模块
 var session = require('express-session');
-
+var RedisStore = require('connect-redis')(session);
 
 var cors = require('cors');   //解决跨域问题
 
@@ -26,10 +26,14 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 //启用session
-app.use(cookieParser('Mysecret'));
+// app.use(cookieParser('keyboard cat'));
 app.use(session({
-  secret: 'Mysecret',//服务器端生成session的签名，相当于一个密钥
-  resave: false, //是否允许session重新设置
+  secret: 'keyboard cat',//服务器端生成session的签名，相当于一个密钥
+  store: new RedisStore({
+    host: "127.0.0.1",
+    port: "6379",
+  }),//将session存入redis
+  resave: true, //即使 session 没有被修改，也保存 session 值
   saveUninitialized: false,   //是否设置session在存储容器中可以给修改
   cookie: {maxAge: 1000 * 60 * 60, secure: false}
 }));

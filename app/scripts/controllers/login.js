@@ -13,7 +13,7 @@ angular.module('infoApp')
     $scope.loginInfo = {
       user: '',
       password: ''
-    }
+    };
     $scope.passCheck = false;
     $scope.loginState = '登录';  //登录按钮上显示的文字，随ajax状态改变
     $scope.wrongInfo = '';
@@ -22,11 +22,10 @@ angular.module('infoApp')
 
     $scope.tryLogin = function () {
       $(".loginForm").removeClass('shake zoomInDown');
-      dataservice.tryLogin($scope.loginInfo).then(function (res) {
+      dataservice.tryLogin(input).then(function (res) {
         $scope.wrongInfo = res.data.result;
         if(res.data.result == '登录成功'){
           // alert('登录成功');
-          console.log(res);
           $location.path('layout.html');
         }else{
           $scope.passCheck = true;
