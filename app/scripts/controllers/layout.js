@@ -8,9 +8,19 @@
  * Controller of the infoApp
  */
 angular.module('infoApp')
-  .controller('LayoutCtrl', ['$scope', 'dataservice','$location', function ($scope, dataservice,$location){
+  .controller('LayoutCtrl', ['$scope', 'dataservice', '$location', function ($scope, dataservice, $location) {
 
-    $scope.loginOut = function(){
+    $scope.logout = function () {
+      dataservice.logout().then(function (res) {
+        if (res.data.state == '退出成功') {
+          $location.path('login.html');
+        }
+      });
+    };
 
-    }
+    dataservice.initPage().then(function(res){
+
+    });
+
+
   }]);

@@ -33,8 +33,8 @@ app.use(session({
     host: "127.0.0.1",
     port: "6379",
   }),//将session存入redis
-  resave: true, //即使 session 没有被修改，也保存 session 值
-  saveUninitialized: false,   //是否设置session在存储容器中可以给修改
+  resave: false, //即使 session 没有被修改，也保存 session 值
+  saveUninitialized: true,   //是否设置session在存储容器中可以给修改
   cookie: {maxAge: 1000 * 60 * 60, secure: false}
 }));
 
@@ -59,11 +59,6 @@ routers.forEach(function (route) {
 //将所有路由转发到index.html
 
 app.get('*.html', function (req, res) {
-  console.log('==================================')
-  console.log('app转发路由')
-  console.log(req.sessionID)
-  console.log(req.session)
-  console.log('==================================')
   res.sendFile(__dirname + '/public/index.html');
 });
 

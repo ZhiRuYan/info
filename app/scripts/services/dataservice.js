@@ -27,5 +27,15 @@ angular.module('infoApp')
     //登录验证、
     this.tryLogin = function(input){
       return $http.post(buildUrl('tryLogin'),input);
-    }
+    };
+
+    //退出登录、
+    this.logout = function(){
+      return $http.post(buildUrl('logout'));
+    };
+
+    //初始化页面、
+    this.initPage = function(){
+      return $http.post(buildUrl('initPage'));
+    };
 	}]);

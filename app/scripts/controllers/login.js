@@ -8,7 +8,7 @@
  * Controller of the infoApp
  */
 angular.module('infoApp')
-  .controller('LoginCtrl', ['$scope', 'dataservice','$location', function ($scope, dataservice,$location) {
+  .controller('LoginCtrl', ['$scope', 'dataservice','$location','uiService', function ($scope, dataservice,$location,uiService) {
 
     $scope.loginInfo = {
       user: '',
@@ -36,7 +36,11 @@ angular.module('infoApp')
       });
     };
     $scope.toRegister = function(){
-      $location.path('register.html');
+      // uiService.showError('测试');
+      // uiService.showInfo('测试');
+      // uiService.showSuccess('测试');
+      uiService.showWarning('测试');
+      // $location.path('register.html');
     };
 
   }]);
