@@ -33,9 +33,9 @@ angular.module('infoApp')
       };
     };
 
-    dataservice.initPage().then(function(res){
-      $scope.username = res.data;
-    });
+    // dataservice.initPage().then(function(res){
+    //   $scope.username = res.data;
+    // });
 
 
   }]);
