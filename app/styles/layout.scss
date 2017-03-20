@@ -1,50 +1,59 @@
-.layout-main{
-
+.layout-main {
+  overflow: hidden;
 }
-.user-info{
+
+.user-info {
   border-bottom: 1px solid #2a2a2a;
   background: #3B3E40;
   position: absolute;
   height: 65px;
   width: 100%;
   left: 0;
-  right:0;
+  right: 0;
 }
-.userInfo-basic{
+
+.userInfo-basic {
   float: left;
 }
-.userInfoBasic-p{
-  font-size:15px;
+
+.userInfoBasic-p {
+  font-size: 15px;
   color: #fff;
   line-height: 65px;
-  margin-left:30px;
+  margin-left: 30px;
 }
-.userInfoBasic-button{
+
+.userInfoBasic-button {
   float: right;
   line-height: 65px;
   margin-right: 30px;
 }
-.layout-nav{
-  height: 100%;
-  min-height: 100%;
+
+.layout-nav {
   width: 210px;
-  background: #3B3E40;
-  float: left;
-  position: relative;
   z-index: 500;
   box-shadow: inset -20px 0 10px -20px #000;
+  position: absolute;
+  top:65px;
+  bottom:30px;
+  background: #3B3E40;
+  border-bottom: #2a2a2a;
 }
-.layoutNav-ul{
+
+.layoutNav-ul {
   list-style: none;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height:100%;
 }
-.layoutNav-li{
+
+.layoutNav-li {
   background: #3B3E40;
   border-bottom: 1px solid #27292a;
   border-top: 1px solid #46494b;
   box-shadow: inset -20px 0 10px -20px #000;
-  height:80px;
+  height: 80px;
   text-align: center;
 }
 
@@ -56,25 +65,47 @@
 //  border-bottom: none;
 //}
 
-.layoutNav-li a{
+.layoutNav-li a {
   color: #fff !important;
   display: block;
   text-decoration: none;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
-  position:relative;
-  line-height:80px;
-  font-size:20px;
+  position: relative;
+  line-height: 80px;
+  font-size: 20px;
 }
 
 .layoutNav-li:hover {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-  background: #208ed3;
-  background: linear-gradient(to bottom, #208ed3 0%,#0272bd 100%);
+  background: linear-gradient(to bottom, #208ed3 0%, #0272bd 100%);
+}
+.layoutNavLiSelected {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #208ed3 0%, #0272bd 100%);
+}
+.layoutNav-i{
+  margin-right: 10px;
+}
+.layout-content {
+  margin-left: 210px;
+  position: relative;
+  padding: 20px;
+  height:100%;
 }
 
-.layout-content{
-  margin-left: 210px;
-  background: #ececec;
-  width:100%;
-  position: relative;
+.layout-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #3B3E40;
+  border-top: 1px solid #2a2a2a;
+  padding: 0 10px;
+}
+
+.layout-footer-inner {
+  line-height: 30px;
+  font-size: 13px;
+  color: #a3a3a3;
 }

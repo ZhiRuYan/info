@@ -52,7 +52,7 @@ app.post('/api/logout', function (req, res, next) {
 
 //退出
 app.post('/api/initPage', function (req, res, next) {
-
+  res.json(req.session.user.user)
 });
 
 // module.exports = router;

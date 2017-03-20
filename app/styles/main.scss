@@ -24,8 +24,19 @@ p{
 .container{
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.bootbox-body{
+  color:#a3a3a3;
 }
 
 @import "login";
 @import "register";
 @import "layout";
+@import "maintain";

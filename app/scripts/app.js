@@ -54,59 +54,61 @@
 //   }]);
 
 
-
 angular
-  .module('infoApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    // 'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ui.router',
-  ])
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',function ($stateProvider, $urlRouterProvider,$locationProvider) {
+    .module('infoApp', [
+        'ngAnimate',
+        'ngCookies',
+        'ngResource',
+        // 'ngRoute',
+        'ngSanitize',
+        'ngTouch',
+        'ui.router',
+        'ui.bootstrap',
+    ])
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-    //启用html5路由模式
-    $locationProvider.html5Mode(true);
-
-    $urlRouterProvider.otherwise('/');
-
-    $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('about', {
-        url: '/about.html',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .state('login', {
-        url: '/login.html',
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
-      .state('register', {
-        url: '/register.html',
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl'
-      })
-      .state('layout', {
-        url: '/layout.html',
-        templateUrl: 'views/layout.html',
-        controller: 'LayoutCtrl'
-      })
-
-
-
-
-
-
-
-
+        $stateProvider
+            .state('main', {
+                url: '/',
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .state('about', {
+                url: '/about.html',
+                templateUrl: 'views/about.html',
+                controller: 'AboutCtrl'
+            })
+            .state('login', {
+                url: '/login.html',
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl'
+            })
+            .state('register', {
+                url: '/register.html',
+                templateUrl: 'views/register.html',
+                controller: 'RegisterCtrl'
+            })
+            .state('layout', {
+                url: '/layout',
+                templateUrl: 'views/layout.html',
+                controller: 'LayoutCtrl'
+            })
+            .state('layout.myinfo', {
+                url: '/myinfo.html',
+                templateUrl: 'views/myinfo.html',
+                controller: 'MyinfoCtrl'
+            })
+            .state('layout.maintain', {
+                url: '/maintain.html',
+                templateUrl: 'views/maintain.html',
+                controller: 'MaintainCtrl'
+            })
 
 
+        //启用html5路由模式
+        $locationProvider.html5Mode(true);
 
-  }]);
+        $urlRouterProvider.otherwise('/');
+
+
+    }]);

@@ -60,8 +60,7 @@ angular.module('infoApp')
       dataservice.tryLogin(input).then(function (res) {
         $scope.wrongInfo = res.data.result;
         if(res.data.result == '登录成功'){
-          // alert('登录成功');
-          $location.path('layout.html');
+          $state.go('layout');
         }else{
           // $scope.passCheck = true;
           uiService.showError('密码错误，请重新输入');
@@ -72,7 +71,7 @@ angular.module('infoApp')
       });
     };
     $scope.toRegister = function(){
-      $location.path('register.html');
+      $state.go('register');
     };
 
   }]);

@@ -1,0 +1,66 @@
+<section class="maintain-section col-md-12">
+    <div class="maintain-main">
+        <div class="maintain-top">
+            <div class="maintain-title">
+                <i class="fa fa-gears"></i>
+                <span class="maintain-title-span">管理群组</span>
+            </div>
+            <div class="maintain-button">
+                <button class="btn btn-success"
+                        ng-click="create()">
+                    <i class="fa fa-plus"></i> 新建群组
+                </button>
+            </div>
+        </div>
+        <div>
+            <div class="">
+                <table class="table table-bordered  ">
+                    <thead>
+                    <tr>
+                        <th width="30" class="maintain-th">组群ID</th>
+                        <th width="30" class="maintain-th">组群昵称</th>
+                        <th width="30" class="maintain-th">创建者</th>
+                        <th width="60" class="maintain-th">组群描述</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="maintain-td">
+                            0000000000000000
+                        </td>
+                        <td class="maintain-td">
+                            11111111111111
+                        </td>
+                        <td class="maintain-td">
+                            22222222222
+                        </td>
+                        <td class="maintain-td">
+                            3333333333
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end>
+                        <td class="text-right" colspan="6">
+                            <button class="btn default btn-xs purple-stripe" ng-click="">
+                                <i class="fa fa-edit"></i> 新建任务
+                            </button>
+                            <button class="btn default btn-xs purple-stripe" ng-click="">
+                                <i class="fa fa-edit"></i> 任务列表
+                            </button>
+                            <button class="btn default btn-xs purple-stripe" ng-click="">
+                                <i class="fa fa-edit"></i> 修改
+                            </button>
+                            <button class="btn default btn-xs purple-stripe" ng-click="dissolution()">
+                                <i class="fa fa-trash-o"></i> 解散
+                            </button>
+                            <button class="btn default btn-xs purple-stripe" ng-click="">
+                                <i class="fa fa-close"></i> 退出
+                            </button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</section>

@@ -1,7 +1,7 @@
 <section class="layout-main">
   <div class="user-info">
     <div class="userInfo-basic">
-      <p class="userInfoBasic-p">欢迎回来 {{session.user}}</p>
+      <p class="userInfoBasic-p">欢迎回来 {{username}}</p>
     </div>
     <div class="userInfoBasic-button">
       <button class="btn btn-primary" ng-click="logout()">退出登录</button>
@@ -10,22 +10,22 @@
   <div style="width: 100%;height: 65px;"></div>
   <div class="layout-nav">
     <ul class="layoutNav-ul">
-      <li class="layoutNav-li">
-        <a href="">个人信息</a>
+      <li class="layoutNav-li" ng-click="changeState(1)">
+        <a href="javascript:void(0)"><i class="fa fa-paper-plane layoutNav-i"></i>待办事项</a>
       </li>
-      <li class="layoutNav-li">
-        <a href="">发起采集</a>
+      <li class="layoutNav-li" ng-click="changeState(2)">
+        <a href="javascript:void(0)"><i class="fa fa-wrench layoutNav-i"></i>管理群组</a>
       </li>
-      <li class="layoutNav-li">
-        <a href="">我已提交</a>
-      </li>
-      <li class="layoutNav-li">
-        <a href="">我所发起</a>
+      <li class="layoutNav-li" ng-click="changeState(3)">
+        <a href="javascript:void(0)"><i class="fa fa-user layoutNav-i"></i>个人信息</a>
       </li>
     </ul>
   </div>
   <div class="layout-content">
-11111111111111111111111111111111
+    <div ui-view></div>
+  </div>
+  <div class="layout-footer">
+    <div class="layout-footer-inner">技术支持:</div>
   </div>
 
 </section>
