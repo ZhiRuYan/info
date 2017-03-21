@@ -9,7 +9,6 @@ var middleware = require('../service/middleware');
 
 
 router.get('/layout', middleware.checkIsLogin,function(req, res, next) {
-  console.log('page-layout')
   next();
 });
 

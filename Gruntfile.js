@@ -27,8 +27,6 @@ module.exports = function (grunt) {
     dist: './deploy/public'
   };
 
-  //跨域所需
-  // grunt.loadNpmTasks('grunt-connect-proxy');
   // Define the configuration for all the tasks
   grunt.initConfig({
     // Project settings
@@ -91,17 +89,7 @@ module.exports = function (grunt) {
           },
         }
       ],
-      // proxies: [
-      //   {
-      //     context: '/',
-      //     host: '127.0.0.1', // 这是你希望转发到的远端服务器
-      //     port: 3000, // 远端服务器端口
-      //     changeOrigin: true, //
-      //     rewrite: {
-      //       '^/api/': '/api/'  // 地址映射策略，从context开始算，把前后地址做正则替换，如果远端路径和context相同则不用配置。
-      //     }
-      //   }
-      // ],
+
       livereload: {
         options: {
           open: true,
@@ -133,26 +121,6 @@ module.exports = function (grunt) {
 
             ];
           },
-
-          // middleware: function (connect, options) {
-          //   if (!Array.isArray(options.base)) {
-          //     options.base = [options.base];
-          //   }
-          //
-          //   // 设置代理
-          //   var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
-          //
-          //   // 代理每个base目录中的静态文件
-          //   options.base.forEach(function(base) {
-          //     middlewares.push(connect.static(base));
-          //   });
-          //
-          //   // 让目录可被浏览（即：允许枚举文件）
-          //   var directory = options.directory || options.base[options.base.length - 1];
-          //   middlewares.push(connect.directory(directory));
-          //
-          //   return middlewares;
-          // }
         }
       },
       test: {
