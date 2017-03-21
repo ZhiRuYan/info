@@ -8,7 +8,7 @@ var glob = require('glob');  //通配符文件列表模块
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-var cors = require('cors');   //解决跨域问题
+// var cors = require('cors');   //解决跨域问题
 
 
 var app = module.exports = express();
@@ -20,13 +20,24 @@ app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//------------------------
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+//------解决跨域问题-------
+// app.use(cors());
+//启用cors
+app.use(require('cors')({
+  origin: function (origin, callback) {
+    callback(null, origin);
+  },
+  credentials: true
+}));
 //启用session
-// app.use(cookieParser('keyboard cat'));
+app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat',//服务器端生成session的签名，相当于一个密钥
   store: new RedisStore({
@@ -39,9 +50,6 @@ app.use(session({
 }));
 
 
-//------解决跨域问题-------
-app.use(cors());
-//------------------------
 
 
 //预加载所有Model

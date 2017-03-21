@@ -55,66 +55,71 @@
 
 
 angular
-    .module('infoApp', [
-        'ngAnimate',
-        'ngCookies',
-        'ngResource',
-        // 'ngRoute',
-        'ngSanitize',
-        'ngTouch',
-        'ui.router',
-        'ui.bootstrap',
-    ])
-    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-
-        $stateProvider
-            .state('main', {
-                url: '/',
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
-            })
-            .state('about', {
-                url: '/about.html',
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl'
-            })
-            .state('login', {
-                url: '/login.html',
-                templateUrl: 'views/login.html',
-                controller: 'LoginCtrl'
-            })
-            .state('register', {
-                url: '/register.html',
-                templateUrl: 'views/register.html',
-                controller: 'RegisterCtrl'
-            })
-            .state('layout', {
-                url: '/layout',
-                templateUrl: 'views/layout.html',
-                controller: 'LayoutCtrl'
-            })
-            .state('layout.myinfo', {
-                url: '/myinfo.html',
-                templateUrl: 'views/myinfo.html',
-                controller: 'MyinfoCtrl'
-            })
-            .state('layout.maintain', {
-                url: '/maintain.html',
-                templateUrl: 'views/maintain.html',
-                controller: 'MaintainCtrl'
-            })
-          // .state('layout.newtask', {
-          //   url: '/newtask.html',
-          //   templateUrl: 'views/newtask.html',
-          //   controller: 'NewtaskCtrl'
-          // })
+  .module('infoApp', [
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    // 'ngRoute',
+    'ngSanitize',
+    'ngTouch',
+    'ui.router',
+    'ui.bootstrap',
+  ])
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    //解决session跨域
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    $httpProvider.defaults.withCredentials = true;
 
 
-        //启用html5路由模式
-        // $locationProvider.html5Mode(true);
+
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .state('about', {
+        url: '/about.html',
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .state('login', {
+        url: '/login.html',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('register', {
+        url: '/register.html',
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
+      })
+      .state('layout', {
+        url: '/layout',
+        templateUrl: 'views/layout.html',
+        controller: 'LayoutCtrl'
+      })
+      .state('layout.myinfo', {
+        url: '/myinfo.html',
+        templateUrl: 'views/myinfo.html',
+        controller: 'MyinfoCtrl'
+      })
+      .state('layout.maintain', {
+        url: '/maintain.html',
+        templateUrl: 'views/maintain.html',
+        controller: 'MaintainCtrl'
+      })
+    // .state('layout.newtask', {
+    //   url: '/newtask.html',
+    //   templateUrl: 'views/newtask.html',
+    //   controller: 'NewtaskCtrl'
+    // })
 
 
-        $urlRouterProvider.otherwise('/');
+    //启用html5路由模式
+    // $locationProvider.html5Mode(true);
 
 
-    }]);
+    $urlRouterProvider.otherwise('/');
+
+
+  }]);
