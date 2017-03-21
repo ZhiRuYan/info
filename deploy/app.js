@@ -10,12 +10,12 @@ var RedisStore = require('connect-redis')(session);
 
 var cors = require('cors');   //解决跨域问题
 
+
 var app = module.exports = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -58,7 +58,7 @@ routers.forEach(function (route) {
 
 //将所有路由转发到index.html
 
-app.get('*.html', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 

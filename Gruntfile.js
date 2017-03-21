@@ -9,6 +9,7 @@
 
 module.exports = function (grunt) {
   var fs = require('fs');
+  var apiProxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -16,7 +17,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    configureProxies: 'grunt-connect-proxy'
   });
 
   // Configurable paths for the application
@@ -76,6 +78,19 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/api',
+          host: '127.0.0.1',
+          port: 3000,
+          https: false,
+          xforward: false,
+          changeOrigin: true,
+          headers: {
+            'host': '127.0.0.1'
+          },
+        }
+      ],
       // proxies: [
       //   {
       //     context: '/',
@@ -90,8 +105,10 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
+          middleware: function (connect, options) {
+
             return [
+              apiProxy,
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -102,17 +119,17 @@ module.exports = function (grunt) {
                 connect.static('./app/styles')
               ),
               connect.static(appConfig.app),
-              connect().use(function (req, res) {
-                fs.readFile('./app/index.html', function (err, data) {
-                  if (err) {
-                    throw err;
-                  }
-                  else {
-                    res.write(data);
-                    res.end();
-                  }
-                });
-              }),
+              // connect().use(function (req, res) {
+              //   fs.readFile('./app/index.html', function (err, data) {
+              //     if (err) {
+              //       throw err;
+              //     }
+              //     else {
+              //       res.write(data);
+              //       res.end();
+              //     }
+              //   });
+              // }),
 
             ];
           },
@@ -523,7 +540,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
-      // 'configureProxies:server',//跨域
+      'configureProxies:server',//跨域
       'connect:livereload',
       'watch'
     ]);

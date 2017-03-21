@@ -7,6 +7,8 @@ var service = require('../service/apiService');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = module.exports = express();
+var middleware = require('../service/middleware');
+
 
 // var middleware = require('../service/middleware');
 app.use(bodyParser.json());
@@ -38,20 +40,22 @@ app.post('/api/tryLogin', function (req, res, next) {
       password: req.body.password
     };
     req.session.user = user;
+    console.log(req.sessionID)
     res.json(data);
   }).catch(function (err) {
     res.json(err);
   });
 });
-
 //退出
 app.post('/api/logout', function (req, res, next) {
   req.session.destroy();
   res.json({state: '退出成功'});
 });
 
-//退出
+//初始化layout
 app.post('/api/initPage', function (req, res, next) {
+  console.log(req.sessionID)
+  console.log(req.session)
   res.json(req.session.user.user)
 });
 
