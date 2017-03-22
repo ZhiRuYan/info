@@ -40,7 +40,6 @@ app.post('/api/tryLogin', function (req, res, next) {
       password: req.body.password
     };
     req.session.user = user;
-    console.log(req.sessionID)
     res.json(data);
   }).catch(function (err) {
     res.json(err);
@@ -54,8 +53,6 @@ app.post('/api/logout', function (req, res, next) {
 
 //初始化layout
 app.post('/api/initPage', function (req, res, next) {
-  console.log(req.sessionID)
-  console.log(req.session)
   res.json(req.session.user.user)
 });
 
