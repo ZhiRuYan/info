@@ -15,8 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/api/main', function (req, res, next) {
-  // res.json({data:'测试数据'});
-  console.log('api=main' + req.sessionID)
   service.testApi().then(function (data) {
     console.log(data)
     res.json(data);

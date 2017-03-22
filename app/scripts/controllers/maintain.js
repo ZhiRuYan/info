@@ -5,8 +5,20 @@ angular.module('infoApp')
       $scope.createGroup = function(){
 
       } ;
-      $scope.dissolution = function () {
-            uiService.bootbox.confirm("确定解散该分组?", function(result) {
+      $scope.whichConfirm = function (index) {
+        var info = [];
+        switch(index){
+          case 1:
+            info = '确定解散该分组？';
+            break;
+          case 2:
+            info= '确定退出该分组？'
+            break;
+          default:
+            return;
+
+        }
+            uiService.bootbox.confirm(info, function(result) {
               if (result) {
                 //
                 console.log(result)
