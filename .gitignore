@@ -4,3 +4,4 @@
 /.sass-cache
 /bower_components
 /deploy/node_modules
+.idea/
