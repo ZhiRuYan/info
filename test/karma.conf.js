@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/angular-ui-router-uib-modal/angular-ui-router-uib-modal.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-validator/dist/angular-validator.js',
+      'bower_components/angular-validator/dist/angular-validator-rules.js',
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

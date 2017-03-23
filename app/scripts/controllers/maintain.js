@@ -3,7 +3,18 @@
 angular.module('infoApp')
     .controller('MaintainCtrl', ['$scope', 'dataservice', '$location', 'uiService', '$state', '$uibModal', function ($scope, dataservice, $location, uiService, $state, $uibModal) {
       $scope.createGroup = function(){
+        var dialog = $uibModal.open({
+          templateUrl: 'views/newtask.html',
+          controller: 'NewtaskCtrl',
+          size: 'md',
+          resolve: {
 
+          }
+        });
+        console.log(dialog)
+        dialog.result.then(function () {
+          uiService.showSuccess('新建组群成功');
+        });
       } ;
       $scope.whichConfirm = function (index) {
         var info = [];
