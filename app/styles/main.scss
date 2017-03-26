@@ -20,7 +20,9 @@ p{
   margin:0;
   padding: 0;
 }
-
+li{
+  list-style: none;
+}
 .container{
   margin: 0;
   padding: 0;
@@ -41,7 +43,9 @@ p{
 @import "layout";
 @import "maintain";
 @import "newtask";
-
+@import "newgroup";
+@import "memberslist";
+@import "joingroup";
 
 
 

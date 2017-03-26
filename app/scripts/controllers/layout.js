@@ -8,7 +8,7 @@
  * Controller of the infoApp
  */
 angular.module('infoApp')
-  .controller('LayoutCtrl', ['$scope', 'dataservice', '$location','$state', function ($scope, dataservice, $location,$state) {
+  .controller('LayoutCtrl', ['$scope', 'dataservice', '$location','$state', '$rootScope',function ($scope, dataservice, $location,$state,$rootScope) {
 
     $scope.logout = function () {
       dataservice.logout().then(function (res) {
@@ -34,7 +34,7 @@ angular.module('infoApp')
     };
 
     dataservice.initPage().then(function(res){
-      $scope.username = res.data;
+      $rootScope.username = res.data;
     });
 
 

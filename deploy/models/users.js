@@ -11,7 +11,8 @@ var userSchema = new mongoose.Schema({
   email:String,
   password:String,
   taskID:String,
-  finishID:String
+  finishID:String,
+  joindGroup:Array
 });
 
 module.exports = mongoose.model('Users',userSchema);

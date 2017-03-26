@@ -116,7 +116,6 @@ angular
     //启用html5路由模式
     // $locationProvider.html5Mode(true);
 
-
     $urlRouterProvider.otherwise('/');
 
 

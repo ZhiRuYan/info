@@ -54,4 +54,72 @@ app.post('/api/initPage', function (req, res, next) {
   res.json(req.session.user.user)
 });
 
+
+//新建群组
+app.post('/api/createGroup', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.creator = req.session.user.user;
+  service.createGroup(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//获取群组列表
+app.post('/api/getGroupList', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.getGroupList(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//解散群组
+app.post('/api/releaseGroup', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.releaseGroup(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//加入群组
+app.post('/api/joinGroup', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.joinGroup(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//退出群组
+app.post('/api/exitGroup', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.exitGroup(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+
+
 // module.exports = router;

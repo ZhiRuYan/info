@@ -1,11 +1,13 @@
 .maintain-section {
   color: #a3a3a3;
+  //position: absolute;
 }
 .maintain-main{
   border:1px solid #ccc;
   padding: 20px;
-  min-height: 800px;
-  overflow: hidden;
+  height: 800px;
+  //min-height: 80%;
+  //overflow: hidden;
 }
 .maintain-top{
   margin-bottom: 30px;
@@ -20,6 +22,10 @@
 }
 .maintain-title-span{
   color: #449d44;
+}
+.maintain-table{
+  height: 700px;
+  overflow: auto;
 }
 .maintain-button{
   line-height: 50px;
