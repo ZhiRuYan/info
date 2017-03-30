@@ -120,6 +120,31 @@ app.post('/api/exitGroup', function (req, res, next) {
   });
 });
 
+//获取成员列表
+app.post('/api/getMemberList', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.getMemberList(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//从群组中删除成员
+app.post('/api/removeMember', function (req, res, next) {
+  if (!req.session.user.user) {
+    res.json({message: '未登录用户'});
+  }
+  req.body.user = req.session.user.user;
+  service.removeMember(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
 
 
 // module.exports = router;

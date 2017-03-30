@@ -2,7 +2,7 @@
  * Created by ZhiRu on 2/16/2017.
  */
 
-
+var io = require('socket.io');
 //依赖工具
 var Promise = require('bluebird');
 var _ = require('underscore');
@@ -17,7 +17,6 @@ var testApi = function () {
     resolve({testData: '测试数据，位于apiservice'});
   });
 };
-
 
 //注册新用户
 var register = function (input) {
@@ -183,6 +182,45 @@ var joinGroup = function (input) {
   });
 };
 
+//获取成员列表
+var getMemberList = function (input) {
+  return new Promise(function (resolve, reject) {
+    var groupID = String(input.data);
+    GroupsModel.find({groupID: groupID}, function (err, docs) {
+      if (err) {
+        return reject({result: '系统错误'});
+      }
+      return resolve(docs[0].members);
+      // if (docs[0].members.length == 0) {
+      //   return resolve({result: '暂无成员'});
+      // } else {
+      //   return resolve(docs[0].members);
+      // }
+    });
+  });
+};
+
+//从群组中删除成员
+var removeMember = function (input) {
+  return new Promise(function (resolve, reject) {
+    var groupID = String(input.groupID);
+    var name = input.name;
+    console.log(input)
+    // UserModel.update({name: name}, {'$pull': {'joindGroup': groupID}});
+    GroupsModel.update({groupID: groupID}, {'$pull': {'members': name}})
+      .then(function (data) {
+        UserModel.update({name: name}, {'$pull': {'joindGroup': groupID}})
+          .then(function (data) {
+            resolve({result: '删除成功'});
+          })
+          .catch(function (err) {
+            reject({result: '系统错误'});
+          });
+        ;
+      })
+
+  });
+};
 
 //导出服务函数
 module.exports = exports = {
@@ -194,4 +232,6 @@ module.exports = exports = {
   releaseGroup: releaseGroup,
   joinGroup: joinGroup,
   exitGroup: exitGroup,
+  getMemberList: getMemberList,
+  removeMember: removeMember,
 }

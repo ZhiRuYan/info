@@ -86,8 +86,19 @@ module.exports = function (grunt) {
           changeOrigin: true,
           headers: {
             'host': '127.0.0.1'
-          },
-        }
+          }
+        },
+        // {
+        //   context: '/socket',
+        //   host: '127.0.0.1',
+        //   port: 3000,
+        //   https: false,
+        //   xforward: false,
+        //   changeOrigin: true,
+        //   headers: {
+        //     'host': '127.0.0.1'
+        //   }
+        // }
       ],
 
       livereload: {

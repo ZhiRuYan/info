@@ -6,7 +6,7 @@ angular.module('infoApp')
 
 
     //功能弹窗
-    $scope.theFunction = function (index) {
+    $scope.theFunction = function (index,data) {
       var templateurl = '';
       var controller = '';
       switch (index) {
@@ -40,7 +40,14 @@ angular.module('infoApp')
         templateUrl: 'views/' + templateurl + '.html',
         controller: controller,
         size: 'md',
-        resolve: {}
+        resolve: {
+          entity:function(){
+            return {
+              index:index,
+              data:data
+            };
+          }
+        }
       });
       dialog.result.then(function (result) {
         getGroupList();

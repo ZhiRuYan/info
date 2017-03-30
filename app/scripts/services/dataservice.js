@@ -64,4 +64,15 @@ angular.module('infoApp')
       return $http.post(buildUrl('exitGroup'),input);
     };
 
+    //获取成员列表
+    this.getMemberList = function (input) {
+      return $http.post(buildUrl('getMemberList'),input);
+    };
+
+    //从群组中删除成员
+    this.removeMember = function (input) {
+      return $http.post(buildUrl('removeMember'),input);
+    };
+
+
   }]);

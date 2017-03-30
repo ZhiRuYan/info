@@ -4,19 +4,18 @@
 </div>
 <div class="modal-body">
   <div class="panel-collapse collapse in">
-    <ul>
-      <li class="">
-        <div class="">
+    <ul ng-repeat="o in memberList">
+      <li class="member-item">
+        <div class="member-namme">
           <h6 class="uppercase">
-           数据库优化
+           {{o}}
           </h6>
         </div>
-        <div class="">
+        <div class="member-action-del" ng-click="removeMember(o)">
         <a class="" href="javascript:;">
           <i class="fa fa-close"></i>
         </a>
       </div>
-
       </li>
     </ul>
   </div>
