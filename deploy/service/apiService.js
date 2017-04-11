@@ -270,6 +270,19 @@ var getTasksList = function (input) {
   });
 };
 
+//删除任务
+var removeTask = function (input) {
+  return new Promise(function (resolve, reject) {
+    console.log(input)
+    TaskModel.remove({taskName: input.taskName}, function (err, docs) {
+      if (err) {
+        return reject({result: '系统错误'});
+      }
+      return resolve({result: '操作成功'});
+    });
+  });
+};
+
 
 //导出服务函数
 module.exports = exports = {
@@ -285,4 +298,5 @@ module.exports = exports = {
   removeMember: removeMember,
   createTask: createTask,
   getTasksList: getTasksList,
+  removeTask:removeTask,
 }

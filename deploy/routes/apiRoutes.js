@@ -144,5 +144,15 @@ app.post('/api/getTasksList', middleware.checkIsLogin,function (req, res, next) 
   });
 });
 
+//删除任务
+app.post('/api/removeTask', middleware.checkIsLogin,function (req, res, next) {
+  req.body.user = req.session.user.user;
+  service.removeTask(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
 
 // module.exports = router;

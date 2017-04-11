@@ -84,4 +84,9 @@ angular.module('infoApp')
       return $http.post(buildUrl('getTasksList'),input);
     };
 
+    //删除任务
+    this.removeTask = function (input) {
+      return $http.post(buildUrl('removeTask'),input);
+    };
+
   }]);

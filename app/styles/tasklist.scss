@@ -74,3 +74,16 @@ table#tasklist td.avatar img {
   float: left;
   margin: 0 15px 0 0
 }
+
+.tasksList-edit{
+  color: cadetblue;
+}
+.tasksList-edit:hover{
+  color: snow;
+}
+.tasksList-del{
+  color: brown;
+}
+.tasksList-del:hover{
+  color: snow;
+}

@@ -15,7 +15,7 @@
       <td>{{o.taskDes}}</td>
       <td>{{o.belong}}</td>
       <td>{{o.taskCreator}}</td>
-      <td><a href="">编辑</a><a href="" ng-if="o.taskCreator == username">/删除</a></td>
+      <td><a class="tasksList-edit" href="javascript:void(0)" ng-click="editTask(o.taskCreator == username)">编辑</a><a href="javascript:void(0)" class="tasksList-del" ng-click="deleteTask(o.taskName)" ng-if="o.taskCreator == username">/删除</a></td>
     </tr>
     </tbody>
   </table>
