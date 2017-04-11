@@ -4,10 +4,12 @@
 var mongoose = require("mongoose");
 
 var tasksSchema = new mongoose.Schema({
-  title:String,
-  creater:String,
-  num:String,
-  taskList:String,
+  taskName:String,
+  taskCreator:String,
+  taskDes:String,
+  belong:Number,
+  details:Array,
+  states:Boolean,
 });
 
 module.exports = mongoose.model('Tasks',tasksSchema);

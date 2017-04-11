@@ -13,10 +13,10 @@ angular.module('infoApp')
         submit: function () {
           dataservice.createGroup($scope.input).then(function(res){
             if(res.data.result == '组群创建成功'){
-              $uibModalInstance.close('组群创建成功');
+              $uibModalInstance.close(res.data.result);
             }
             else{
-              $uibModalInstance.dismiss('组群创建失败');
+              $uibModalInstance.dismiss(res.data.result);
             }
           }).catch(function(err){
             $uibModalInstance.dismiss('系统错误');

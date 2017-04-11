@@ -1,0 +1,76 @@
+table#tasklist th:first-child {
+  padding-left:50px;
+}
+
+table#tasklist tr:nth-child(odd) {
+  background:#f0f0f0;
+}
+
+table#tasklist {
+  border:1px solid #e9e9e9;
+  width:100%;
+  border-radius: 5px;
+}
+
+table#tasklist thead tr {
+  background: #ededee !important;
+  background: linear-gradient(to bottom, #ededee 0%,#dddddd 100%) !important;
+  border-bottom: 1px solid #fff;
+}
+
+table#tasklist thead tr:hover {
+  color: #000;
+}
+
+table#tasklist tr {
+  border:1px solid #e9e9e9;
+  background:#fff;
+}
+
+table#tasklist tr td:first-child {
+  padding-left: 50px;
+}
+
+
+table#tasklist tr:hover {
+  background: #208ed3;
+  background: linear-gradient(to bottom, #208ed3 0%,#0272bd 100%);
+  color:#fff;
+  //cursor:pointer;
+}
+
+table#tasklist th {
+  font-weight:bold;
+  min-width:100px;
+  padding: 15px;
+  text-align: left;
+}
+
+table#tasklist td {
+  vertical-align: middle;
+  padding: 15px;
+}
+
+table#tasklist thead tr .header {
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
+  height: 2em;
+}
+
+table#tasklist thead tr .headerSortDown, table#tasklist thead tr .headerSortUp {
+  color: #208ed3;
+}
+
+table#tasklist thead tr th.avatar {
+  padding-left: 70px;
+}
+
+table#tasklist td.avatar {
+  line-height: 30px;
+}
+
+table#tasklist td.avatar img {
+  float: left;
+  margin: 0 15px 0 0
+}

@@ -74,5 +74,14 @@ angular.module('infoApp')
       return $http.post(buildUrl('removeMember'),input);
     };
 
+    //新建任务
+    this.createTask = function (input) {
+      return $http.post(buildUrl('createTask'),input);
+    };
+
+    //获取任务列表
+    this.getTasksList = function (input) {
+      return $http.post(buildUrl('getTasksList'),input);
+    };
 
   }]);

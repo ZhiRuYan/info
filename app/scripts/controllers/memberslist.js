@@ -27,9 +27,9 @@ angular.module('infoApp')
         submit: function () {
           $uibModalInstance.dismiss('已取消');
         },
-        // cancel: function () {
-        //   $uibModalInstance.dismiss('已取消');
-        // }
+        cancel: function () {
+          $uibModalInstance.dismiss('已取消');
+        }
       };
 
 

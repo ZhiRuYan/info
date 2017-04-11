@@ -5,7 +5,7 @@
 
 //此文件是设置所需要的一系列中间件
 var checkIsLogin = function (req, res, next) {
-  if (req.session.user) {
+  if (req.session.user.user) {
     next();
   } else {
     res.redirect('/login.html');

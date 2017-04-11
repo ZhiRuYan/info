@@ -1,0 +1,22 @@
+<section class="tasklist-section">
+  <table id="tasklist" class="tasklist-table">
+    <thead class="tasklist-thead">
+    <tr class="tasklist-thead-tr">
+      <th>任务名称</th>
+      <th>任务描述</th>
+      <th>所属分组</th>
+      <th>创建者</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat=" o in tasksList">
+      <td>{{o.taskName}}</td>
+      <td>{{o.taskDes}}</td>
+      <td>{{o.belong}}</td>
+      <td>{{o.taskCreator}}</td>
+      <td><a href="">编辑</a><a href="" ng-if="o.taskCreator == username">/删除</a></td>
+    </tr>
+    </tbody>
+  </table>
+</section>

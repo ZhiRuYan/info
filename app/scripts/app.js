@@ -106,17 +106,19 @@ angular
         templateUrl: 'views/maintain.html',
         controller: 'MaintainCtrl'
       })
+      .state('layout.tasklist', {
+        url: '/tasklist.html',
+        templateUrl: 'views/tasklist.html',
+        controller: 'TasklistCtrl'
+      })
     // .state('layout.newtask', {
     //   url: '/newtask.html',
     //   templateUrl: 'views/newtask.html',
     //   controller: 'NewtaskCtrl'
     // })
-
-
+    $urlRouterProvider.otherwise('/');
     //启用html5路由模式
     // $locationProvider.html5Mode(true);
-
-    $urlRouterProvider.otherwise('/');
 
 
   }]);

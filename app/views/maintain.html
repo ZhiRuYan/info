@@ -44,7 +44,7 @@
           </tr>
           <tr ng-repeat-end>
             <td class="text-right" colspan="6">
-              <button class="btn default btn-xs purple-stripe" ng-click="theFunction('createTask')" ng-if="username==o.creator">
+              <button class="btn default btn-xs purple-stripe" ng-click="theFunction('createTask',[o.groupID,o.creator])" ng-if="username==o.creator">
                 <i class="fa fa-edit"></i> 新建任务
               </button>
               <button class="btn default btn-xs purple-stripe" ng-click="theFunction('tasksList')" ng-if="username==o.creator">

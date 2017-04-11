@@ -11,6 +11,7 @@ var _ = require('underscore');
 //mongo model
 var UserModel = require('../models/users');
 var GroupsModel = require('../models/groups');
+var TaskModel = require('../models/tasks');
 //api接口
 var testApi = function () {
   return new Promise(function (resolve, reject) {
@@ -41,6 +42,7 @@ var register = function (input) {
       } else {
         return reject({result: '用户已存在'});
       }
+      ;
     });
   })
 };
@@ -137,7 +139,6 @@ var exitGroup = function (input) {
   return new Promise(function (resolve, reject) {
     var groupID = String(input.groupID);
     var user = input.user;
-    console.log(input)
     GroupsModel.update({groupID: groupID}, {'$pull': {'members': user}}).then(function () {
       UserModel.update({name: user}, {"$pull": {joindGroup: groupID}}).then(function (res) {
         return resolve({result: '已退出该组群'});
@@ -205,7 +206,6 @@ var removeMember = function (input) {
   return new Promise(function (resolve, reject) {
     var groupID = String(input.groupID);
     var name = input.name;
-    console.log(input)
     // UserModel.update({name: name}, {'$pull': {'joindGroup': groupID}});
     GroupsModel.update({groupID: groupID}, {'$pull': {'members': name}})
       .then(function (data) {
@@ -222,6 +222,55 @@ var removeMember = function (input) {
   });
 };
 
+//新建任务
+var createTask = function (input) {
+  return new Promise(function (resolve, reject) {
+    var task = new TaskModel({
+      taskName: input.taskName,
+      taskDes: input.taskDes,
+      taskCreator: input.taskCreator,
+      belong: input.belong
+    });
+    TaskModel.find({taskName: input.taskName}, function (err, docs) {
+      if (docs == '') {
+        task.save(function (err) {
+          if (err) {
+            return reject(err);
+          }
+          else {
+            return resolve({result: '操作成功'});
+          }
+        }).catch(function (err) {
+          return reject(err)
+        });
+      } else {
+        return reject({result: '该任务名已存在'});
+      }
+      ;
+    });
+
+  });
+};
+
+//获取任务列表
+var getTasksList = function (input) {
+  return new Promise(function (resolve, reject) {
+    UserModel.find({name: input.user}, function (err, docs) {
+      if (err || docs == '') {
+        return reject({result: '系统错误'});
+      }
+      var joinedGroup = docs[0].joindGroup;
+      TaskModel.find({"$or": [{taskCreator: input.user}, {belong: joinedGroup}]}, function (err, docs) {
+        if (err) {
+          return reject({result: '系统错误'});
+        }
+        return resolve(docs);
+      });
+    });
+  });
+};
+
+
 //导出服务函数
 module.exports = exports = {
   testApi: testApi,
@@ -234,4 +283,6 @@ module.exports = exports = {
   exitGroup: exitGroup,
   getMemberList: getMemberList,
   removeMember: removeMember,
+  createTask: createTask,
+  getTasksList: getTasksList,
 }

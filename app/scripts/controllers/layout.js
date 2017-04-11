@@ -19,14 +19,14 @@ angular.module('infoApp')
     };
     $scope.changeState = function(index){
       switch (index){
-        case 1:
+        case 'myinfo':
           $state.go('layout.myinfo');
           break;
-        case 2:
+        case 'maintain':
           $state.go('layout.maintain');
           break;
-        case 3:
-          $state.go('layout.myinfo');
+        case 'tasklist':
+          $state.go('layout.tasklist');
           break;
         default:
           $state.go('layout.myinfo');
