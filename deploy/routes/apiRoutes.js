@@ -154,5 +154,15 @@ app.post('/api/removeTask', middleware.checkIsLogin,function (req, res, next) {
   });
 });
 
+//填写任务
+app.post('/api/fillInTask', middleware.checkIsLogin,function (req, res, next) {
+  req.body.user = req.session.user.user;
+  service.fillInTask(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
 
 // module.exports = router;

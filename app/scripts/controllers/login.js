@@ -60,7 +60,7 @@ angular.module('infoApp')
       dataservice.tryLogin(input).then(function (res) {
         $scope.wrongInfo = res.data.result;
         if(res.data.result == '登录成功'){
-          $state.go('layout');
+          $state.go('layout.myinfo');
         }else{
           // $scope.passCheck = true;
           uiService.showError('密码错误，请重新输入');

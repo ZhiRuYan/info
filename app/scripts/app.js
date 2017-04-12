@@ -111,11 +111,6 @@ angular
         templateUrl: 'views/tasklist.html',
         controller: 'TasklistCtrl'
       })
-    // .state('layout.newtask', {
-    //   url: '/newtask.html',
-    //   templateUrl: 'views/newtask.html',
-    //   controller: 'NewtaskCtrl'
-    // })
     $urlRouterProvider.otherwise('/');
     //启用html5路由模式
     // $locationProvider.html5Mode(true);

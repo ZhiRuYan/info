@@ -10,6 +10,7 @@ var tasksSchema = new mongoose.Schema({
   belong:Number,
   details:Array,
   states:Boolean,
+  summary:Array
 });
 
 module.exports = mongoose.model('Tasks',tasksSchema);

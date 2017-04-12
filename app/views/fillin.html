@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="actions.cancel()"></button>
+  <h4 class="modal-title">填写</h4>
+</div>
+<div class="modal-body">
+  <form name="fillIn">
+    <form-body>
+      <div class="row">
+        <div class="col-md-8" ng-repeat="o in options.details">
+          <label class="control-label">{{o.option}}</label>
+          <input class="form-control" ng-model="o.value" placeholder=请输入{{o.option}} required/>
+        </div>
+      </div>
+    </form-body>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn green" type="button" ng-click="actions.submit()" ng-disabled="fillIn.$invalid">确定
+  </button>
+  <button class="btn default" type="button" ng-click="actions.cancel()">取消</button>
+</div>

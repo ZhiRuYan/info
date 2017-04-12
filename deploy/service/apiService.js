@@ -229,7 +229,8 @@ var createTask = function (input) {
       taskName: input.taskName,
       taskDes: input.taskDes,
       taskCreator: input.taskCreator,
-      belong: input.belong
+      belong: input.belong,
+      details: input.details
     });
     TaskModel.find({taskName: input.taskName}, function (err, docs) {
       if (docs == '') {
@@ -273,13 +274,44 @@ var getTasksList = function (input) {
 //删除任务
 var removeTask = function (input) {
   return new Promise(function (resolve, reject) {
-    console.log(input)
     TaskModel.remove({taskName: input.taskName}, function (err, docs) {
       if (err) {
         return reject({result: '系统错误'});
       }
       return resolve({result: '操作成功'});
     });
+  });
+};
+
+//填写任务
+var fillInTask = function (input) {
+  return new Promise(function (resolve, reject) {
+    var pushData = {
+      user: input.user
+    };
+    _.forEach(input.details, function (item) {
+      pushData[item.option] = item.value;
+    });
+    TaskModel.find({taskName: input.taskName}, function (err, docs) {
+      if (err) {
+        return reject({result: '系统错误'});
+      }
+      var result = _.every(docs[0].summary, function (item) {
+        if (item.user == input.user) {
+          return reject({result: '您已提交过，请勿重复提交'});
+        }
+      });
+      if(result){
+        TaskModel.update({taskName: input.taskName}, {'$push': {'summary': pushData}}, function (err, docs) {
+          if (err) {
+            return reject({result: '系统错误'});
+          }
+          return resolve({result: '提交成功'});
+        });
+      }
+
+    });
+
   });
 };
 
@@ -298,5 +330,6 @@ module.exports = exports = {
   removeMember: removeMember,
   createTask: createTask,
   getTasksList: getTasksList,
-  removeTask:removeTask,
+  removeTask: removeTask,
+  fillInTask: fillInTask,
 }

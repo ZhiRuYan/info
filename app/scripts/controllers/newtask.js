@@ -10,8 +10,14 @@ angular.module('infoApp')
         taskDes: '',
         taskCreator: '',
         belong: $scope.entity.data[0],
-        // details: [],
+        details: [],
         // states: false
+      };
+      $scope.addOptions = function(){
+        var theOption = {
+          option:''
+        };
+        $scope.input.details.push(theOption);
       };
 
       $scope.actions = {
@@ -28,7 +34,6 @@ angular.module('infoApp')
             console.log(err)
             $uibModalInstance.dismiss('系统错误');
           });
-
         },
         cancel: function () {
           $uibModalInstance.dismiss('已取消');

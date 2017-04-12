@@ -14,6 +14,17 @@
           <label class="control-label">任务描述</label>
           <input class="form-control" ng-model="input.taskDes" placeholder="请输入任务描述" required/>
         </div>
+        <div ng-repeat="o in input.details">
+          <div class="col-md-8 newtask-options">
+            <input class="form-control" ng-model="o.option" placeholder="请输入选项名称" required/>
+          </div>
+        </div>
+        <div class="col-md-8 newtask-button">
+          <button class="btn btn-success"
+                  ng-click="addOptions()">
+            <i class="fa fa-plus"></i>添加选项
+          </button>
+        </div>
       </div>
     </form-body>
   </form>
