@@ -8,6 +8,9 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = module.exports = express();
 var middleware = require('../service/middleware');
+var excel = require('node-xlsx');
+var fs = require('fs');
+var _ = require('underscore');
 
 
 // var middleware = require('../service/middleware');
@@ -69,6 +72,26 @@ app.post('/api/createGroup', middleware.checkIsLogin,function (req, res, next) {
 app.post('/api/getGroupList', middleware.checkIsLogin,function (req, res, next) {
   req.body.user = req.session.user.user;
   service.getGroupList(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//获取个人信息
+app.post('/api/getMyinfo', middleware.checkIsLogin,function (req, res, next) {
+  req.body.user = req.session.user.user;
+  service.getMyinfo(req.body).then(function (data) {
+    res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//更改个人信息
+app.post('/api/changeMyinfo', middleware.checkIsLogin,function (req, res, next) {
+  req.body.user = req.session.user.user;
+  service.changeMyinfo(req.body).then(function (data) {
     res.json(data);
   }).catch(function (err) {
     res.json(err);
@@ -159,6 +182,27 @@ app.post('/api/fillInTask', middleware.checkIsLogin,function (req, res, next) {
   req.body.user = req.session.user.user;
   service.fillInTask(req.body).then(function (data) {
     res.json(data);
+  }).catch(function (err) {
+    res.json(err);
+  });
+});
+
+//导出excle
+app.get('/api/generateExcle/:taskName', middleware.checkIsLogin,function (req, res, next) {
+  var input = {
+    taskName:req.params.taskName
+  }
+  service.generateExcle(input).then(function (data) {
+    var tmpData = data[0].summary;
+    var rows = [_.keys(data[0].summary[0])];
+    for(var i=0;i<tmpData.length;i++){
+      var props = _.values(tmpData[i]);
+      rows.push(props);
+    }
+    var result = excel.build([{name: "sheet1", data: rows}]);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+    res.setHeader("Content-Disposition", "attachment; filename=" + encodeURIComponent('导出数据') + ".xlsx");
+    res.end(result, 'binary');
   }).catch(function (err) {
     res.json(err);
   });

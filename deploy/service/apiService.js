@@ -118,6 +118,31 @@ var getGroupList = function (input) {
   });
 };
 
+//获取个人信息
+var getMyinfo = function (input) {
+  return new Promise(function (resolve, reject) {
+    UserModel.find({name: input.user}, function (err, docs) {
+     return resolve(docs[0]);
+    }).catch(function(err){
+      return reject({result: '系统错误'});
+    });
+  });
+};
+
+//更改个人信息
+var changeMyinfo = function (input) {
+  return new Promise(function (resolve, reject) {
+    console.log(input)
+    UserModel.update({name: input.user}, {'$set':{email:input.email}},function(err,docs){
+      if(err){
+        return reject({result: '系统错误'});
+      }else{
+        return resolve({result: '修改成功'});
+      }
+    });
+  });
+};
+
 //解散组群
 var releaseGroup = function (input) {
   // var user = input.user;
@@ -247,7 +272,6 @@ var createTask = function (input) {
       } else {
         return reject({result: '该任务名已存在'});
       }
-      ;
     });
 
   });
@@ -296,31 +320,49 @@ var fillInTask = function (input) {
       if (err) {
         return reject({result: '系统错误'});
       }
-      var result = _.every(docs[0].summary, function (item) {
+      var result = true;
+      _.forEach(docs[0].summary, function (item) {
         if (item.user == input.user) {
-          return reject({result: '您已提交过，请勿重复提交'});
+          result = false;
         }
       });
-      if(result){
+      if (result) {
         TaskModel.update({taskName: input.taskName}, {'$push': {'summary': pushData}}, function (err, docs) {
           if (err) {
             return reject({result: '系统错误'});
           }
           return resolve({result: '提交成功'});
         });
+      } else {
+        // return reject({result: '系统错误'});
+        return reject({result: '您已提交过，请勿重复提交'});
       }
+      ;
 
     });
 
   });
 };
 
+//导出Excle
+var generateExcle = function (input) {
+  return new Promise(function (resolve, reject) {
+    TaskModel.find({taskName: input.taskName}, function (err, docs) {
+      if (err) {
+        return reject({result: '系统错误'});
+      }
+      return resolve(docs);
+    });
+  });
+};
 
 //导出服务函数
 module.exports = exports = {
   testApi: testApi,
   register: register,
   tryLogin: tryLogin,
+  getMyinfo:getMyinfo,
+  changeMyinfo:changeMyinfo,
   createGroup: createGroup,
   getGroupList: getGroupList,
   releaseGroup: releaseGroup,
@@ -332,4 +374,5 @@ module.exports = exports = {
   getTasksList: getTasksList,
   removeTask: removeTask,
   fillInTask: fillInTask,
+  generateExcle: generateExcle,
 }

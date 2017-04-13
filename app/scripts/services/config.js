@@ -20,3 +20,5 @@ angular.module('infoApp')
 		};
 		return config[env];
 	})());
+
+

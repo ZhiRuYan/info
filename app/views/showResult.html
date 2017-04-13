@@ -3,32 +3,23 @@
   <h4 class="modal-title">查看</h4>
 </div>
 <div class="modal-body">
-  <div class="col-md-12" style="padding: 0">
-    <button class="btn btn-success showresult-button"
-            ng-click="">
+  <div class="col-md-12" style="padding: 0" ng-if="listData.length>0">
+    <a class="btn btn-success showresult-button"
+       ng-href={{'http://127.0.0.1:9000/api/generateExcle/'+entity.taskName}} target="_blank">
       <i class="fa fa-plus"></i> 导出为Excle
-    </button>
+    </a>
   </div>
 
   <table class="table table-bordered">
     <thead>
-    <tr">
-      <th class="showresult-th">1</th>
+    <tr>
+      <th class="showresult-th" ng-repeat="(key,value) in listData[0]">{{key}}</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td class="maintain-td">
-        1
-      </td>
-      <td class="maintain-td">
-        2
-      </td>
-      <td class="maintain-td">
-        3
-      </td>
-      <td class="maintain-td">
-        4
+    <tr ng-repeat="o in listData">
+      <td class="maintain-td" ng-repeat="(key,value) in o">
+        {{value}}
       </td>
     </tr>
     </tbody>

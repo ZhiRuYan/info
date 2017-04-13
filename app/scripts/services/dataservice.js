@@ -39,6 +39,16 @@ angular.module('infoApp')
       return $http.post(buildUrl('initPage'));
     };
 
+    //获取个人信息
+    this.getMyinfo = function (input) {
+      return $http.post(buildUrl('getMyinfo'),input);
+    };
+
+    //更改个人信息
+    this.changeMyinfo = function (input) {
+      return $http.post(buildUrl('changeMyinfo'),input);
+    };
+
     //新建群组
     this.createGroup = function (input) {
       return $http.post(buildUrl('createGroup'), input);
@@ -93,5 +103,10 @@ angular.module('infoApp')
     this.fillInTask = function (input) {
       return $http.post(buildUrl('fillInTask'),input);
     };
+
+    // //生成Excle
+    // this.generateExcle = function (input) {
+    //   return $http.post(buildUrl('generateExcle'),input);
+    // };
 
   }]);

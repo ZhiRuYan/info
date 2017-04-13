@@ -1,14 +1,43 @@
-<section class="myinfo-section col-md-12">
-  <section class="myinfo-main">
-    <div class="myinfo-title">
-      myinfo
+
+<section class="maintain-section col-md-12">
+  <div class="maintain-main">
+    <div class="maintain-top">
+      <div class="maintain-title">
+        <i class="fa fa-user"></i>
+        <span class="maintain-title-span">个人信息</span>
+      </div>
+      <div class="maintain-button">
+        <button class="btn default btn-md purple-stripe" ng-click="saveChange()">
+          <i class="fa fa-save"></i> 保存
+        </button>
+      </div>
     </div>
-    <div class="myinfo-body">
-      <div class="myinfo-name">张三</div>
-      <div class="myinfo-email">1@11.com</div>
+    <div>
+      <div class="maintain-table">
+        <form class="form-horizontal" role="form">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                个人信息
+              </div>
+            </div>
+            <div class="portlet-body">
+              <div class="form-group" >
+                <label class="col-md-8" style="color:#000">姓名</label>
+                <div class="col-md-8">
+                  <input class="form-control" id="fullname" type="text"  ng-model="info.name" disabled/>
+                </div>
+                <label class="col-md-8" style="color:#000" for="name">Email</label>
+                <div class="col-md-8">
+                  <input class="form-control" id="name" type="text" ng-model="info.email"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
     </div>
-    <div class="myinfo-footer">
-      *请妥善保护个人信息
-    </div>
-  </section>
+
+  </div>
 </section>
