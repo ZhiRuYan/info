@@ -3,15 +3,13 @@
 angular.module('infoApp')
   .controller('MaintainCtrl', ['$scope', 'dataservice', '$location', 'uiService', '$state', '$uibModal', '$rootScope', function ($scope, dataservice, $location, uiService, $state, $uibModal, $rootScope) {
     $scope.groupList = [];
-
-    console.log('socket')
-    // var socket = io.connect('http://127.0.0.1:3000');
-    var socket = io("ws://127.0.0.1:3000");
-    socket.on('client-rev', function (data) {
-      $scope.server_data = data;
-    });
-    console.log(socket)
-    // socket.broadcast.emit('client-send', {data: {test:'test'}    });
+    //
+    // console.log('socket')
+    // // var socket = io.connect('http://127.0.0.1:3000');
+    // var socket = io("ws://127.0.0.1:3000");
+    // socket.on('client-rev', function (data) {
+    //   $scope.server_data = data;
+    // });
     //功能弹窗
     $scope.theFunction = function (index,data) {
       var templateurl = '';
